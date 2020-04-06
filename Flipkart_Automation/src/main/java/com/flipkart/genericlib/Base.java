@@ -28,13 +28,12 @@ public class Base {
 			scrnDriver = driver;
 		}
 		driver.manage().window().maximize();
-		System.out.println(flib.getPropertyKeyValue("url"));
 		driver.get(flib.getPropertyKeyValue("url"));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
 	@AfterClass
 	public void configAC() {
-		//driver.quit();
+		driver.quit();
 	}
 }

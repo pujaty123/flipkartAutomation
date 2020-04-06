@@ -4,27 +4,32 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import com.flipkart.genericlib.Base;
+import com.flipkart.genericlib.Utility;
 import com.flipkart.objectRepository.HomePage;
 import com.flipkart.objectRepository.PersonalDetail;
 import com.flipkart.objectRepository.ProductPage;
 
 public class AddProduct extends Base {
-	public HomePage hp;
-	public ProductPage pp;
-	public PersonalDetail pd;
+	public HomePage homePage;
+	public ProductPage productPage;
+	public PersonalDetail personalDetail;
 
 	@Test
 	public void addProductTest() {
-		hp = PageFactory.initElements(driver, HomePage.class);
-		pp = PageFactory.initElements(driver, ProductPage.class);
-		pd = PageFactory.initElements(driver, PersonalDetail.class);
-		hp.getcancel().click();
-		hp.getwomens().click();
-		pp.product(driver);
-		
-		String Firstname = flib.getExcelData("sheet1", 0, 1);
-		String Lastname = flib.getExcelData("sheet1", 1, 1);
-		pd.personalDetail(Firstname, Lastname);
+		homePage = PageFactory.initElements(driver, HomePage.class);
+		productPage = PageFactory.initElements(driver, ProductPage.class);
+		personalDetail = PageFactory.initElements(driver, PersonalDetail.class);
+		homePage.enterUserName(Utility.getUserName());
+		homePage.enterPassword(Utility.getPassword());
+		homePage.clickLogin();
+		homePage.getwomens().click();
+		productPage.getProducts().click();
+		productPage.getKurta().click();
+		productPage.getWishlist(driver).click();
+		personalDetail.getProfile(driver).click();
+		personalDetail.getedit().click();
+		personalDetail.personalDetail(Utility.getFirstName(), Utility.getLastName());
+		personalDetail.getSavebtn().click();
 
 	}
 }

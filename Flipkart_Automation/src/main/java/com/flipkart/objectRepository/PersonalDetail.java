@@ -1,20 +1,27 @@
 package com.flipkart.objectRepository;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.flipkart.genericlib.Utility;
+
 public class PersonalDetail {
 	@FindBy(xpath = "//div[text()='My Account']")
-	private WebElement Account;
+	private WebElement accountbtn;
+	
+	@FindBy(xpath="//*[@class='_34Yjv1']")
+	private WebElement accountHoverbtn;
 
 	public WebElement getAccount() {
-		return Account;
+		return accountbtn;
 	}
 
 	@FindBy(xpath = "//div[text()='My Profile']")
 	private WebElement Profile;
 
-	public WebElement getProfile() {
+	public WebElement getProfile(WebDriver driver) {
+		Utility.movetoelement(driver, accountHoverbtn);
 		return Profile;
 
 	}
@@ -42,18 +49,18 @@ public class PersonalDetail {
 	}
 
 	@FindBy(xpath = "//button[text()='SAVE']")
-	private WebElement Savebtn;
+	private WebElement savebtn;
 
 	public WebElement getSavebtn() {
-		return Savebtn;
+		Utility.pageLoadWait(2);
+		return savebtn;
 	}
 
 	public void personalDetail(String firstname, String lastname) {
-		edit.click();
+		nameFS.clear();
 		nameFS.sendKeys(firstname);
+		nameLS.clear();
 		nameLS.sendKeys(lastname);
-		Savebtn.click();
-
 	}
 
 }

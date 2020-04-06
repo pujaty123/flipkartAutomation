@@ -7,6 +7,7 @@
         <methods>
           <include name="addProductTest"/>
           <include name="configBC"/>
+          <include name="configAC"/>
         </methods>
       </class> <!-- com.flipkart.testscripts.AddProduct -->
     </classes>
